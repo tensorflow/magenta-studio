@@ -78,8 +78,8 @@ async function build(platform, type){
 			}
 			fs.remove(buildDir)
 		} else if (platform == 'linux') {
-			await fs.remove(outputDir)
-			await fs.move(buildDir, outputDir, {overwrite: true});
+			await fs.remove(outDir)
+			await fs.move(buildDir, outDir, {overwrite: true});
 		} else {
 			await moveFiles(buildDir, outputDir)
 		}
