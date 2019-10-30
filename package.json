@@ -1,6 +1,6 @@
 {
   "name": "magenta-studio",
-  "version": "0.1.2",
+  "version": "0.1.1",
   "description": "Magenta Studio plugins as Standalone applications and for Ableton Live",
   "main": "wrong.js",
   "scripts": {
