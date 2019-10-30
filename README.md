@@ -20,29 +20,13 @@ npm install
 
 ## Building
 
-The modules come as both standalone apps and Ableton integrated. To build all versions (Linux standalone and Mac, Windows in standalone and Max For Live formats) run:
+The modules come as both standalone apps and Ableton integrated (currently this only builds for macOS). To build both versions run:
 
 ```
 npm run build
 ```
 
 All of the build files will be put into the 'dist' folder.
-
-You can also build a specific target by passing it as an argument:
-
-```
-npm run build macos-standlone
-```
-
-The current options are:
-
-* windows-ableton
-* windows-standalone
-* linux-standalone
-* macos-ableton
-* macos-standalone
-
-*Note:* if you want to build Windows versions from Mac, you need to have [Wine](https://www.winehq.org/) installed.
 
 ## License
 
