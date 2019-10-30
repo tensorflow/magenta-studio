@@ -22,8 +22,8 @@ const STEPS_PER_BAR = 16;
 const STEPS_PER_QUARTER = 4;
 
 /**
- * Reconstructs unquantized sequence by breaking it into as large of chunks as
- * possible that are supported by the given models.
+ * Reconstructs sequence by breaking it into as large of chunks as possible that
+ * are supported by the given models.
  *
  * @param inSeq the NoteSequence to reconstruct.
  * @param models a list of MusicVAE models where the value of `index + 1`
@@ -35,8 +35,6 @@ export async function reconstructBySize(inSeq, models, temperature=1) {
 
   // Process in as large of chunks as possible.
   const maxChunkSize = models.length * STEPS_PER_BAR;
-  const secondsPerStep = 1 / sequences.stepsPerQuarterToStepsPerSecond(
-      STEPS_PER_QUARTER, inSeq.tempos[0].qpm);
   const outputs = [];
   for (let startOffset = 0; startOffset < inSeq.totalQuantizedSteps; startOffset+=maxChunkSize){
     const chunk = clone(inSeq);
@@ -45,14 +43,11 @@ export async function reconstructBySize(inSeq, models, temperature=1) {
       .map(n => Object.assign({}, n))
       .filter(n => startOffset <= n.quantizedStartStep && n.quantizedStartStep < endOffset)
       .map(n => {
-        n.startTime -= startOffset * secondsPerStep;
-        n.endTime -= startOffset * secondsPerStep;
         n.quantizedStartStep -= startOffset;
         n.quantizedEndStep -= startOffset;
         return n;
       })
     chunk.totalQuantizedSteps = endOffset - startOffset;
-    chunk.totalTime = chunk.totalQuantizedSteps * secondsPerStep;
 
     // Select model based on the number of actual bars in the chunk.
     const numBars = Math.ceil(chunk.totalQuantizedSteps / STEPS_PER_BAR);
