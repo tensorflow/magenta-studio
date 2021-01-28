@@ -37,7 +37,7 @@
     "core-js": "^2.5.7",
     "css-loader": "^1.0.0",
     "drag-drop": "^4.2.0",
-    "electron": "^7.2.4",
+    "electron": "^9.4.0",
     "electron-builder": "^20.41.0",
     "electron-packager": "^13.0.1",
     "eslint": "^5.12.1",
